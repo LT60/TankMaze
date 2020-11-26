@@ -30,8 +30,7 @@
 *.exe
 *.out
 *.app
-Tank/.vs/Tank/v16/.suo
-Tank/.vs/Tank/v16/Browse.VC.db
+Tank/.vs
 *.tlog
 
 Tank/Debug
