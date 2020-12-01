@@ -13,7 +13,7 @@ private:
 	HWND m_hWnd;								//窗口
 
 	//1.5.3游戏绘图处理
-	//负责绘画游戏中的对象
+	//负责绘画游戏中的对象（游戏所有的绘图操作都会经过这里分发）
 	void GameRunDraw();
 	//输出fps
 	void Drawfps(Graphics& gh);

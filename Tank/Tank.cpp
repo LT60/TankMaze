@@ -107,7 +107,7 @@ BOOL CTankApp::InitInstance()
 	pFrame->ShowWindow(SW_SHOW);
 	pFrame->UpdateWindow();
 
-	//GDI+初始化
+	//【GDI+初始化】
 	Status s = GdiplusStartup(&m_tokenGdiplus, &input, &output);
 	return TRUE;
 }

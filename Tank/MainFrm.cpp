@@ -72,26 +72,28 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//EnableDocking(CBRS_ALIGN_ANY);
 	//DockControlBar(&m_wndToolBar);
 
+	//启动定时器
 	SetTimer(ETimerIdGameLoop, 0, NULL);	//启动定时器每次都会进入游戏帧
+	//将当前窗口传递给CGame类
 	m_game.SetHandle(GetSafeHwnd());		//设置游戏主窗口句柄
 	return 0;
 }
 
-void CMainFrame::OnTimer(UINT_PTR nIDEvent)
+void CMainFrame::OnTimer(UINT_PTR nIDEvent)	//参数代表当前是哪一个定时器
 {
-	switch (nIDEvent)
+	switch (nIDEvent)//区分不同的消息，处理需要处理的消息
 	{
 	case ETimerIdGameLoop://游戏循环ID
 	{
 		//记录本次时刻：
-		static DWORD dwLastUpdate = GetTickCount();
+		static DWORD dwLastUpdate = GetTickCount64();
 		//判断时间间隔
-		if (GetTickCount() - dwLastUpdate >= 20)
+		if (GetTickCount64() - dwLastUpdate >= 20)
 		{
-			//进入游戏帧处理
-			m_game.EnterFrame(GetTickCount());
+			//进入游戏帧处理【更新】
+			m_game.EnterFrame(GetTickCount64());
 			//记录时间间隔
-			dwLastUpdate = GetTickCount();
+			dwLastUpdate = GetTickCount64();
 		}
 		//否则什么都不做
 	}

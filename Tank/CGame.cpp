@@ -28,23 +28,31 @@ void CGame::GameRunDraw()
 	CRect rc;
 	GetClientRect(m_hWnd, &rc);
 
+	//把设备句柄转换成cdc对象
 	CDC* dc = CClientDC::FromHandle(hdc);
 
 	CDC m_dcMemory;				//双缓冲绘图用
-	CBitmap bmp;
+	CBitmap bmp;				//内存中的绘图对象
+	//创建这个对象
 	bmp.CreateCompatibleBitmap(dc, rc.Width(), rc.Height());
+	//在内存中创建合适的图像，传入游戏窗口设备句柄
 	m_dcMemory.CreateCompatibleDC(dc);
+	//选中这个绘图
 	CBitmap* poldBitmap = m_dcMemory.SelectObject(&bmp);
 
+	//正式使用gdi+对象
 	Graphics gh(m_dcMemory.GetSafeHdc());	//构造对象
 	gh.Clear(Color::White);					//清除背景
-	gh.ResetClip();
+	gh.ResetClip();							//重新设置
 	
+	//绘制：
 	Drawfps(gh);							//画入内存
 
+	//把内存当中的图片拷贝到屏幕上
+	//（拷贝位置是0，0，大小也是客户区大小，从内存当中进行拷贝，拷贝位置也是0，0，拷贝方式是直接复制）
 	::BitBlt(hdc, 0, 0, rc.Width(), rc.Height(),//复制到屏幕
 		m_dcMemory.GetSafeHdc(), 0, 0, SRCCOPY);
-	dc->DeleteDC();							//释放
+	dc->DeleteDC();								//随后释放
 
 	return;
 }
@@ -53,7 +61,7 @@ void CGame::GameRunDraw()
 void CGame::Drawfps(Graphics& gh)
 {
 	//定义静态变量，每次进入函数时保存上次的值
-	static int fps = 0;		
+	static int fps = 0;	//记录Drawfps调用了多少次	
 
 	//记录已经画了多少帧
 	m_fps++;				
@@ -73,12 +81,15 @@ void CGame::Drawfps(Graphics& gh)
 	{
 		CString s;
 		s.Format(_T("FPS:%d"), fps);//将fps格式化到字符串
-		SolidBrush brush(Color(0x00, 0x00, 0xFF));//创建红色的画刷
-		Gdiplus::Font font(_T("宋体"),5.0);//创建输出的字体
+		//创建红色的画刷
+		SolidBrush brush(Color(0x00, 0x00, 0xFF));
+		//创建输出的字体
+		Gdiplus::Font font(_T("宋体"),5.0);
 		CRect rc;
 		//获取输出窗口的大小，用来定位文字的输出位置
 		::GetClientRect(m_hWnd, &rc);
-		//在右上角显示：
+		//在右上角显示（距离右边是50，距离上边是2）
+		//把整数转换成浮点型以适应参数
 		PointF origin(static_cast<float>(rc.right - 50), static_cast<float>(rc.top + 2));
 		//输出
 		gh.DrawString(s.GetString(), -1, &font, origin, &brush);
