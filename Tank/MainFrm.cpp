@@ -19,6 +19,7 @@ IMPLEMENT_DYNAMIC(CMainFrame, CFrameWnd)
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
 	ON_WM_SETFOCUS()
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 #define GAME_WIN_W (800)	//全局变量：窗口宽
@@ -71,8 +72,33 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//EnableDocking(CBRS_ALIGN_ANY);
 	//DockControlBar(&m_wndToolBar);
 
-
+	SetTimer(ETimerIdGameLoop, 0, NULL);	//启动定时器每次都会进入游戏帧
+	m_game.SetHandle(GetSafeHwnd());		//设置游戏主窗口句柄
 	return 0;
+}
+
+void CMainFrame::OnTimer(UINT_PTR nIDEvent)
+{
+	switch (nIDEvent)
+	{
+	case ETimerIdGameLoop://游戏循环ID
+	{
+		//记录本次时刻：
+		static DWORD dwLastUpdate = GetTickCount();
+		//判断时间间隔
+		if (GetTickCount() - dwLastUpdate >= 20)
+		{
+			//进入游戏帧处理
+			m_game.EnterFrame(GetTickCount());
+			//记录时间间隔
+			dwLastUpdate = GetTickCount();
+		}
+		//否则什么都不做
+	}
+	default:
+		break;
+	}
+	CFrameWnd::OnTimer(nIDEvent);
 }
 
 /*

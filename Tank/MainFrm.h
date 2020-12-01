@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include "CGame.h"
 
 class CMainFrame : public CFrameWnd
 {
@@ -40,6 +41,11 @@ protected:
 	//游戏窗口大小为800*600像素
 	int m_iWidth{ 800 };//客户区的宽
 	int m_iHeight{ 600 };//客户区的高
+
+	enum ETimerID { ETimerIdGameLoop = 1 };	//定时器ID
+	CGame m_game;							//游戏对象
+public:
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };
 
 
