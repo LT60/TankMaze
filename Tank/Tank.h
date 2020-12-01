@@ -30,6 +30,14 @@ public:
 public:
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
+
+	//1.5.2.1 初始化GDIplus 1：添加初始化所需的成员变量
+private:
+	//引入GDIPlus所需的变量
+	ULONG_PTR m_tokenGdiplus;
+	Gdiplus::GdiplusStartupInput input;
+	Gdiplus::GdiplusStartupOutput output;
+
 };
 
 extern CTankApp theApp;

@@ -11,3 +11,8 @@
 #include "framework.h"
 
 #endif //PCH_H
+
+//1.5.1 绘图库的引用
+#include <gdiplus.h>
+#pragma comment(lib,"Gdiplus.lib")//链接GDIPlus库的第二种方法
+using namespace Gdiplus;

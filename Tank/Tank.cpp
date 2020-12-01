@@ -106,6 +106,9 @@ BOOL CTankApp::InitInstance()
 	// 唯一的一个窗口已初始化，因此显示它并对其进行更新
 	pFrame->ShowWindow(SW_SHOW);
 	pFrame->UpdateWindow();
+
+	//GDI+初始化
+	Status s = GdiplusStartup(&m_tokenGdiplus, &input, &output);
 	return TRUE;
 }
 
