@@ -11,4 +11,12 @@ public:
 	void OnLButtonUp(UINT nFlags, CPoint point);//处理左键抬起事件
 private:
 	HWND m_hWnd;								//窗口
+
+	//1.5.3游戏绘图处理
+	//负责绘画游戏中的对象
+	void GameRunDraw();
+	//输出fps
+	void Drawfps(Graphics& gh);
+	//记录帧率
+	int m_fps{ 0 };
 };
