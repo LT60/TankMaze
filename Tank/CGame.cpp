@@ -46,7 +46,22 @@ void CGame::GameRunDraw()
 	gh.ResetClip();							//重新设置
 	
 	//绘制：
+
+	//画背景图片
+	{
+		//获取游戏窗口大小
+		CRect rc;
+		GetClientRect(m_hWnd, rc);
+		
+		//载入要绘制的图片
+		Gdiplus::Image* img = Image::FromFile(_T("menu_background.png"));
+
+		//画
+		gh.DrawImage(img, rc.left, rc.top, rc.Width(), rc.Height());
+	}
+
 	Drawfps(gh);							//画入内存
+
 
 	//把内存当中的图片拷贝到屏幕上
 	//（拷贝位置是0，0，大小也是客户区大小，从内存当中进行拷贝，拷贝位置也是0，0，拷贝方式是直接复制）
