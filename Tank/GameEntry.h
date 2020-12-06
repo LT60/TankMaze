@@ -11,10 +11,10 @@ public:
 	virtual ~CGameEntry()
 	{}
 public:
-	virtual void Draw(Gdiplus :: Graphics &gh) const = 0 ;
+	virtual void Draw(GdiPlus::Graphics& gh) const = 0;
 };
 
-//可移动对象类：【
+//可移动对象类：
 class CGameEntryMoveable : public CGameEntry
 {
 public:
@@ -26,7 +26,6 @@ public:
     {
     }
 
-    //b(a)
     // 拷贝构造方法
     CGameEntryMoveable(const CGameEntryMoveable& rhs)
     {
@@ -39,7 +38,6 @@ public:
         }
     }
 
-    //b=a
     // 重载赋值运算
     CGameEntryMoveable& operator=(const CGameEntryMoveable& rhs)
     {
@@ -103,7 +101,6 @@ public:
         return -static_cast<Gdiplus::REAL>((m_fSpeed)*cos(GetDirectionArc()));
     }
 
-    //碰撞检测
     // 下一步(前进的)位置
     virtual RectF ForwardNextRect() const
     {
@@ -181,13 +178,13 @@ public:
         return m_direction;
     }
 
-    // 设置每次旋转的角度（弧度）
+    // 设置每次旋转的角度
     virtual void SetDirectionTurnArc(float dir)
     {
         m_directionTurn = PI * dir / 180.0f;
     };
 
-    // 设置每次旋转的角度（角度）
+    // 设置每次旋转的角度
     virtual void SetDirectionTurn(float dir)
     {
         m_directionTurn = dir;
@@ -249,4 +246,3 @@ private:
     float m_directionTurn{ 5 }; 	// 每次旋转的角度
 };
 
-//】
