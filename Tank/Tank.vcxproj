@@ -186,6 +186,7 @@
     <ClInclude Include="CGame.h" />
     <ClInclude Include="CGameEntry.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GameEntry.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
