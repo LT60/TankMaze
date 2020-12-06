@@ -32,5 +32,6 @@
 *.app
 Tank/.vs
 *.tlog
+*.user
 
 Tank/Debug
