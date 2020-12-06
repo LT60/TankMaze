@@ -46,7 +46,7 @@ public:
 	}
 
 	//复制构造方法
-	CGameEntryMoveable(const CGameEntryMoveable& rhs）
+	CGameEntryMoveable(const CGameEntryMoveable& rhs)
 	{
 		if (this != &rhs)
 		{
