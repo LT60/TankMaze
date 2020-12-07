@@ -11,7 +11,7 @@ public:
 	virtual ~CGameEntry()
 	{}
 public:
-	virtual void Draw(GdiPlus::Graphics& gh) const = 0;
+	virtual void Draw(Gdiplus::Graphics& gh) const = 0;
 };
 
 //可移动对象类：
@@ -125,7 +125,7 @@ public:
     {
         PointF ptCenter = GetCenterPoint();
         PointF ptHead = ptCenter;
-        float fRadius = std::sqrt(std::pow(m_rect.Width / 2, 2) +   // 计算半径
+        float fRadius = (float)std::sqrt(std::pow(m_rect.Width / 2, 2) +   // 计算半径
             std::pow(m_rect.Height / 2, 2));
 
         ptHead.X += fRadius * sin(GetDirectionArc());                // 计算头部坐标x

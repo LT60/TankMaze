@@ -86,14 +86,14 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent)	//参数代表当前是哪一个定�
 	case ETimerIdGameLoop://游戏循环ID
 	{
 		//记录本次时刻：
-		static DWORD dwLastUpdate = GetTickCount64();
+		static DWORD dwLastUpdate = (DWORD)GetTickCount64();
 		//判断时间间隔
-		if (GetTickCount64() - dwLastUpdate >= 20)
+		if ((DWORD)GetTickCount64() - dwLastUpdate >= 20)
 		{
 			//进入游戏帧处理【更新】
-			m_game.EnterFrame(GetTickCount64());
+			m_game.EnterFrame((DWORD)GetTickCount64());
 			//记录时间间隔
-			dwLastUpdate = GetTickCount64();
+			dwLastUpdate = (DWORD)GetTickCount64();
 		}
 		//否则什么都不做
 	}

@@ -62,7 +62,12 @@ void CGame::GameRunDraw()
 
 	Drawfps(gh);							//画入内存
 	*/
+	// 画入内存
+	{
+		m_menu.Draw(gh); 					// 画背景
 
+		m_menuSelect.Draw(gh);			// 画菜单
+	}
 	//把内存当中的图片拷贝到屏幕上
 	//（拷贝位置是0，0，大小也是客户区大小，从内存当中进行拷贝，拷贝位置也是0，0，拷贝方式是直接复制）
 	::BitBlt(hdc, 0, 0, rc.Width(), rc.Height(),//复制到屏幕
@@ -73,7 +78,7 @@ void CGame::GameRunDraw()
 }
 
 //画fps
-void CGame::Drawfps(Graphics& gh)
+/*void CGame::Drawfps(Graphics& gh)
 {
 	//定义静态变量，每次进入函数时保存上次的值
 	static int fps = 0;	//记录Drawfps调用了多少次	
@@ -112,3 +117,4 @@ void CGame::Drawfps(Graphics& gh)
 }
 
 
+*/

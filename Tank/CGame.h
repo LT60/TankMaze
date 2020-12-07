@@ -1,4 +1,7 @@
 #pragma once
+#include "GameMenuPanel.h"
+#include "GameMenuBackground.h"
+
 //CGame类代表“整个游戏”对象
 class CGame
 {
@@ -11,12 +14,20 @@ public:
 	void OnLButtonUp(UINT nFlags, CPoint point);//处理左键抬起事件
 private:
 	HWND m_hWnd;								//窗口
+	/* 游戏绘图处理1.6.4
+   负责绘画游戏中的对象
+*/
+	void GameRunDraw();
+
+	CGameMenuPanel m_menuSelect; // 开始菜单
+
+	CGameMenuBackground m_menu;  // 开始菜单背景图
 
 	//1.5.3游戏绘图处理
 	//负责绘画游戏中的对象（游戏所有的绘图操作都会经过这里分发）
-	void GameRunDraw();
+	//void GameRunDraw();
 	//输出fps
-	void Drawfps(Graphics& gh);
+	//void Drawfps(Graphics& gh);
 	//记录帧率
 	int m_fps{ 0 };
 };
