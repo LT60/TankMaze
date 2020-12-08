@@ -47,7 +47,6 @@ void CGame::GameRunDraw()
 	
 	//绘制：
 
-
 	/*//画背景图片
 	{
 		//获取游戏窗口大小
@@ -86,11 +85,11 @@ void CGame::Drawfps(Graphics& gh)
 	static DWORD dwLast = GetTickCount();
 
 	//判断时间是否超过1秒，如果超过，输出fps
-	if (GetTickCount64() - dwLast >= 1000)
+	if (GetTickCount() - dwLast >= 1000)
 	{
 		fps = m_fps;
 		m_fps = 0;		//复位
-		dwLast = GetTickCount64();//记录本次输出的时间
+		dwLast = GetTickCount();//记录本次输出的时间
 	}
 
 	//输出fps

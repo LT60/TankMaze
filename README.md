@@ -3,6 +3,8 @@ Tank game in a maze.
 
 ## ToDo
 
+完成gameEntry类；下面要完成背景类与面板类（background；panel）
+
 1.6：Spectacular functions
 
 1.5：Using GDIPlus

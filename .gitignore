@@ -35,5 +35,4 @@ Tank/.vs
 *.user
 
 Tank/Debug
-Tank/CGame.cpp
-Tank/CGame.cpp
+*.user
