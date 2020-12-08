@@ -1,20 +1,18 @@
 #pragma once
 #include<gdiplus.h>
-#include<math.h>	//数学函数
+#include<math.h>	//包括一些数学函数
 #include<cmath>
 
-class CGameEntry
+class CGameEntry    //其它可绘制对象的父类
 {
 public:
-	CGameEntry()
-	{}
-	virtual ~CGameEntry()
-	{}
+	CGameEntry(){}
+	virtual ~CGameEntry(){}
 public:
-	virtual void Draw(GdiPlus::Graphics& gh) const = 0;
+	virtual void Draw(Gdiplus::Graphics& gh) const = 0;     //绘制自己的函数，下面所有子类想要绘制自己的画都要重载这个函数
 };
 
-//可移动对象类：
+//可移动对象的父类：
 class CGameEntryMoveable : public CGameEntry
 {
 public:
@@ -26,7 +24,7 @@ public:
     {
     }
 
-    // 拷贝构造方法
+    // 拷贝构造方法 再次声明：b(a);
     CGameEntryMoveable(const CGameEntryMoveable& rhs)
     {
         if (this != &rhs) {
@@ -38,7 +36,7 @@ public:
         }
     }
 
-    // 重载赋值运算
+    // 重载赋值运算 b=a;
     CGameEntryMoveable& operator=(const CGameEntryMoveable& rhs)
     {
         if (this != &rhs) {
@@ -58,8 +56,8 @@ public:
     virtual void RotateRight()
     {
 
-        m_direction += m_directionTurn; // 当前角度增加
-        if (m_direction >= 360) {         // 增加满一周之后，减去360度，使其始终保持在小角度
+        m_direction += m_directionTurn;     // 当前角度增加
+        if (m_direction >= 360) {           // 增加满一周之后，减去360度，使其始终保持在小角度
             m_direction -= 360;
         }
     }
@@ -67,8 +65,8 @@ public:
     // 左转
     virtual void RotateLeft()
     {
-        m_direction -= m_directionTurn; // 当前角度减少
-        if (m_direction < 0) {            // 使其始终保持在大于0的角度
+        m_direction -= m_directionTurn;     // 当前角度减少
+        if (m_direction < 0) {              // 使其始终保持在大于0的角度
             m_direction = static_cast<float>(360 - m_directionTurn);
         }
     }
