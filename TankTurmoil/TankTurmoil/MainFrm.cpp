@@ -17,6 +17,7 @@ IMPLEMENT_DYNAMIC(CMainFrame, CFrameWnd)    // VS2015自动生成代码
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)    // VS2015自动生成代码
     ON_WM_CREATE()
+    ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 // CMainFrame 构造/析构
@@ -32,7 +33,8 @@ CMainFrame::CMainFrame()
         CRect rcCli;
         GetClientRect(rcCli);       // 获得客户区的大小
         
-        //抄来的计算居中位置        
+        //抄来的计算居中位置
+        //https://blog.csdn.net/friendan/article/details/49688243
         CRect rtDesk;
         CRect rtDlg;
         ::GetWindowRect(::GetDesktopWindow(), &rtDesk);
@@ -58,5 +60,26 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
         return -1;
     }
 
+    SetTimer(ETimerIdGameLoop, 0, NULL);			// 启动定时器 "每次都会进入游戏帧"
+    m_game.SetHandle(GetSafeHwnd());				// 设置游戏主窗口句柄
+
     return 0;
+}
+
+void CMainFrame::OnTimer(UINT_PTR nIDEvent)
+{
+    switch (nIDEvent) {
+    case ETimerIdGameLoop: {							// 游戏循环ID
+        static DWORD dwLastUpdate = GetTickCount();  // 记录本次时刻
+        if (GetTickCount() - dwLastUpdate >= 20) {    // 判断时间隔
+            m_game.EnterFrame(GetTickCount());        // 进入游戏帧处理
+            dwLastUpdate = GetTickCount();            // 记录时间间隔
+        }
+            // 否则什么都不做
+    }
+    default:
+        break;
+    }
+
+    CFrameWnd::OnTimer(nIDEvent);
 }

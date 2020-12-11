@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include"CGame.h"
+
 //代表游戏的主窗口，也是游戏一启动就建立的窗口
 class CMainFrame : public CFrameWnd
 {
@@ -28,5 +30,11 @@ protected:
 
     int m_iWidth{ 800 };   // 客户区的宽
     int m_iHeight{ 600 };  // 客户区的高
+
+    enum ETimerId { ETimerIdGameLoop = 1 }; // 定时器 ID
+
+    CGame m_game; 							// 游戏对象
+public:
+    afx_msg void OnTimer(UINT_PTR nIDEvent);
 
 }; 
