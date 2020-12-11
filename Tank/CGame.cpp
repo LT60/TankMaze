@@ -1,6 +1,17 @@
 #include "pch.h"
 #include "CGame.h"
+#include <algorithm>
+#define KEYDOWN(vk) (GetAsyncKeyState(vk) & 0x8000)
 
+CGame::CGame()
+{
+	//m_menuSelect.m_pParent = this;
+	//m_menuBackup.m_pParent = this;
+}
+
+CGame::~CGame()
+{
+}
 void CGame::SetHandle(HWND hWnd)
 {
 	m_hWnd = hWnd;
@@ -10,15 +21,18 @@ bool CGame::EnterFrame(DWORD dwTime)
 {
 	//调用
 	GameRunDraw();
+	GameRunLogic();
 	return false;
 }
 
 void CGame::OnMouseMove(UINT nFlags, CPoint point)
 {
+	//m_menuSelect.OnMouseMove(nFlags, point);
 }
 
 void CGame::OnLButtonUp(UINT nFlags, CPoint point)
 {
+	//m_menuSelect.OnLButtonUp(nFlags, point);
 }
 //每次进入游戏帧都调用
 void CGame::GameRunDraw()
@@ -42,26 +56,39 @@ void CGame::GameRunDraw()
 
 	//正式使用gdi+对象
 	Graphics gh(m_dcMemory.GetSafeHdc());	//构造对象
-	gh.Clear(Color::White);					//清除背景
-	gh.ResetClip();							//重新设置
+	gh.Clear(Color::White);				//清除背景
+	gh.ResetClip();					//重新设置
 	
 	//绘制：
 
-	/*//画背景图片
-	{
+	//画背景图片
+/*	{
 		//获取游戏窗口大小
-		CRect rc;
-		GetClientRect(m_hWnd, rc);
-		
+		//CRect rc;
+		//GetClientRect(m_hWnd, rc);
+		RectF m_rect{ 0,0,800,600 };
 		//载入要绘制的图片
-		Gdiplus::Image* img = Image::FromFile(_T("menu_background.png"));
+		Image* m_imgBackground = Image::FromFile(_T("menu_background.png"));
 
 		//画
-		gh.DrawImage(img, rc.left, rc.top, rc.Width(), rc.Height());
-	}
+		//gh.DrawImage(img, rc.left, rc.top, rc.Width(), rc.Height());
+		//gh.DrawImage(img, rect);
+		gh.DrawImage(m_imgBackground, m_rect);                      //绘制
 
+	}
+*/
 	Drawfps(gh);							//画入内存
-	*/
+	/*	{
+		m_menu.Draw(gh);		//画背景
+		m_menuSelect.Draw(gh);	//画菜单
+	}*/
+	// 画入内存
+	{
+		m_player01.Draw(gh);             			// 画坦克(玩家一)
+		for (auto& blt : m_lstBullets) { 			// 遍历所有存在于地图上的子弹
+			blt.Draw(gh);							// 调用子弹自身绘制函数，绘制子弹
+		}
+	}
 
 	//把内存当中的图片拷贝到屏幕上
 	//（拷贝位置是0，0，大小也是客户区大小，从内存当中进行拷贝，拷贝位置也是0，0，拷贝方式是直接复制）
@@ -111,4 +138,56 @@ void CGame::Drawfps(Graphics& gh)
 	}
 }
 
+void CGame::GameRunLogic()
+{
+#define KEYDOWN(vk) (GetAsyncKeyState(vk) & 0x8000)
+	//按键处理
+	{
+		if (KEYDOWN(VK_LEFT))					// 左方向盘按下
+		{
+			m_player01.RotateLeft();			// 玩家一向左转
+		}
+		if (KEYDOWN(VK_RIGHT))          		// 右方向盘按下
+		{
+			m_player01.RotateRight();			// 玩家一向右转
+		}
+		if (KEYDOWN(VK_UP))            			// 上方向盘按下
+		{
+			m_player01.Forward();     			// 玩家一向前走
+		}
+		if (KEYDOWN(VK_DOWN))          			// 下方向盘按下
+		{
+			{
+				m_player01.Backward(); 			// 玩家一向后退
+			}
+		}
+		if (KEYDOWN('M'))                		// 按下M键
+		{
+			CBullet blt;
+			if (m_player01.Fire(blt)) {        	// 开火
+				m_lstBullets.push_back(blt); 	// 加入到地图列表中
+			}
+		}
+	}
+
+	for (auto& blt : m_lstBullets) {          	// 处理子弹对象的移动
+		blt.Move();                            	// 子弹向前移动
+	}
+
+	// 移除超时的子弹
+	{
+		// 查找超时的子弹
+		auto itRemove = std::remove_if(m_lstBullets.begin(),
+			m_lstBullets.end(),
+			[](CBullet& blt)->bool {
+				return blt.IsTimeout();
+			});
+		for (auto it = itRemove; it != m_lstBullets.end(); ++it) {
+			it->SetActive(false);				// 设置为无效
+			it->GetOwner()->AddBullet(*it);		// 给对应的坦克增加子弹
+		}
+		// 从本地删除子弹
+		m_lstBullets.erase(itRemove, m_lstBullets.end());
+	}
+}
 
