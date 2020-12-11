@@ -46,6 +46,7 @@ void CGame::GameRunDraw()
     gh.Clear(Color::White); 						// 清除背景
     gh.ResetClip();
 
+    m_menu.Draw(gh);
     DrawFps(gh); 									// 画入内存
 
     ::BitBlt(hdc, 0, 0, rc.Width(), rc.Height(),	// 拷贝到屏幕
