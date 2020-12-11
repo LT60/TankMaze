@@ -52,6 +52,9 @@ CTankTurmoilApp theApp;
 
 BOOL CTankTurmoilApp::InitInstance()
 {
+	//GDI+初始化
+	Status s = GdiplusStartup(&m_tokenGdiplus, &input, &output);
+
 	// 若要创建主窗口，此代码将创建新的框架窗口
 	// 对象，然后将其设置为应用程序的主窗口对象
 	CMainFrame* pFrame = new CMainFrame;

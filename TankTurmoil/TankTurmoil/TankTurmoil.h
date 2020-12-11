@@ -30,6 +30,13 @@ public:
 public:
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
+
+private:
+	// 引入 GDIPlus 所需要的变量
+	ULONG_PTR m_tokenGdiplus;
+	Gdiplus::GdiplusStartupInput input;
+	Gdiplus::GdiplusStartupOutput output;
+
 };
 
 extern CTankTurmoilApp theApp;

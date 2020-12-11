@@ -7,7 +7,12 @@
 #ifndef PCH_H
 #define PCH_H
 
-// 添加要在此处预编译的标头
 #include "framework.h"
 
 #endif //PCH_H
+
+// 添加要在此处预编译的标头
+#include <gdiplus.h>				//包含
+#pragma comment(lib, "Gdiplus.lib")	//链接
+using namespace Gdiplus;			// 使用Gdiplus命名空间
+
