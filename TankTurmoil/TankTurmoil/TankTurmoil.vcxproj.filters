@@ -39,6 +39,12 @@
     <ClInclude Include="CGameMenuBackground.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CGameMenuPanel.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameEntry.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TankTurmoil.cpp">
@@ -54,6 +60,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CGameMenuBackground.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameMenuPanel.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameEntry.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

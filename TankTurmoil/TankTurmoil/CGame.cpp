@@ -22,10 +22,12 @@ bool CGame::EnterFrame(DWORD dwTime)				// 进入游戏帧
 
 void CGame::OnMouseMove(UINT nFlags, CPoint point) // 处理鼠标移动事件
 {
+    m_menuSelect.OnMouseMove(nFlags, point);//  选择游戏类型
 }
 
 void CGame::OnLButtonUp(UINT nFlags, CPoint point) // 处理左键抬起事件
 {
+    m_menuSelect.OnLButtonUp(nFlags, point);
 }
 // 游戏绘图
 void CGame::GameRunDraw()
@@ -47,6 +49,7 @@ void CGame::GameRunDraw()
     gh.ResetClip();
 
     m_menu.Draw(gh);
+    m_menuSelect.Draw(gh);
     DrawFps(gh); 									// 画入内存
 
     ::BitBlt(hdc, 0, 0, rc.Width(), rc.Height(),	// 拷贝到屏幕

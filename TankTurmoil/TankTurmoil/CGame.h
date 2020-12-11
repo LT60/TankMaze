@@ -1,5 +1,6 @@
 #pragma once
 #include"CGameMenuBackground.h"
+#include"CGameMenuPanel.h"
 //整个游戏
 //被包含进了MainFrm.h
 
@@ -24,6 +25,8 @@ public:
     //游戏绘图处理
     //负责 绘画 游戏中的对象
     void GameRunDraw();
+
+    CGameMenuPanel m_menuSelect;
     CGameMenuBackground m_menu;
 
     // 输出fps
