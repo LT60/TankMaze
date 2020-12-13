@@ -107,7 +107,7 @@ private:
     Gdiplus::Rect m_rectMap{ 0, 0, 1200, 900 };
 
     // 地图中墙的宽度
-    int m_wallWidth{ 7 };
+    int m_wallWidth{ 10 };
 
     // 地图中中间空位的宽度
     int m_spaceLen{ 63 };

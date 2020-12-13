@@ -189,4 +189,19 @@ void CGame::GameRunLogic()
         // 从本地 删除 子弹
         m_lstBullets.erase(itRemove, m_lstBullets.end());
     }
+    // 子弹撞墙处理
+    {
+        for (auto& blt : m_lstBullets) { // 子弹是否撞上墙 : 如果撞上了，改变方向等等
+            m_map.HitWallProcess(blt);  //  进行撞墙处理
+            blt.Move();                   // 子弹移动
+        }
+    }
+    // 检查子弹是否击中坦克 :  击中要使坦克爆炸(子弹可不用移除了，因为游戏都结束了)
+    for (auto& blt : m_lstBullets) {
+        if (m_player01.IsHitted(blt)) {  // 如果玩家一被击中
+            m_player01.Bomb();            // 使玩家一“自爆”
+        }
+        break;
+    }
+
 }
