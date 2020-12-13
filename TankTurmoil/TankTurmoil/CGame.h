@@ -164,7 +164,7 @@ private:
 
     std::list<CBullet> m_lstBullets; 		// 存在于地图场景中的 子弹对象数组
 
-    CGameMap m_map{ 10, 10, 1180, 880 }; 	// 地图对象
+    CGameMap m_map{ 10, 10, 1500, 900 }; 	// 地图对象
 
     CGameMenuPanel m_menuSelect; 			// 开始菜单
 
