@@ -63,9 +63,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     if (CFrameWnd::OnCreate(lpCreateStruct) == -1) {
         return -1;
     }
-
-    SetTimer(ETimerIdGameLoop, 0, NULL);			// 启动定时器 "每次都会进入游戏帧"
-    m_game.SetHandle(GetSafeHwnd());				// 设置游戏主窗口句柄
+    SetTimer(ETimerIdGameLoop, 0, NULL); 					// 启动定时器 每次都会进入游戏帧
+    m_game.SetHandle(GetSafeHwnd());						// 设置游戏主窗口句柄
 
     return 0;
 }
@@ -73,13 +72,13 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 {
     switch (nIDEvent) {
-    case ETimerIdGameLoop: {							// 游戏循环ID
-        static DWORD dwLastUpdate = GetTickCount();  // 记录本次时刻
-        if (GetTickCount() - dwLastUpdate >= 20) {    // 判断时间隔
-            m_game.EnterFrame(GetTickCount());        // 进入游戏帧处理
-            dwLastUpdate = GetTickCount();            // 记录时间间隔
+    case ETimerIdGameLoop: { 							// 游戏循环ID
+        static DWORD dwLastUpdate = GetTickCount();		// 记录本次时刻
+        if (GetTickCount() - dwLastUpdate >= 20) { 		// 判断时间隔
+            m_game.EnterFrame(GetTickCount());			// 进入游戏帧处理
+            dwLastUpdate = GetTickCount();				// 记录时间间隔
         }
-            // 否则什么都不做
+        // 否则什么都不做
     }
     default:
         break;
@@ -90,12 +89,12 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 
 void CMainFrame::OnMouseMove(UINT nFlags, CPoint point)
 {
-    m_game.OnMouseMove(nFlags, point); // 直接把鼠标消息转给 CGame对象
+    m_game.OnMouseMove(nFlags, point); 					// 直接把鼠标消息转给 CGame对象
     CFrameWnd::OnMouseMove(nFlags, point);
 }
 
 void CMainFrame::OnLButtonUp(UINT nFlags, CPoint point)
 {
-    m_game.OnLButtonUp(nFlags, point); // 直接把鼠标消息转给 CGame对象
+    m_game.OnLButtonUp(nFlags, point); 				// 直接把鼠标消息转给 CGame对象
     CFrameWnd::OnLButtonUp(nFlags, point);
 }

@@ -1,7 +1,11 @@
-﻿#pragma once
-#include"CGame.h"
+﻿
+// MainFrm.h : CMainFrame 类的接口
+//
 
-//代表游戏的主窗口，也是游戏一启动就建立的窗口
+#pragma once
+
+#include "CGame.h"
+
 class CMainFrame : public CFrameWnd
 {
 
@@ -10,16 +14,16 @@ public:
 protected:
     DECLARE_DYNAMIC(CMainFrame)
 
-    // 特性
+    // 特性 : 类的公共成员
 public:
 
-    // 操作
+    // 操作 : 类的公共成员
 public:
 
-    // 重写
+    // 重写 : 类的公共成员
 public:
 
-    // 实现
+    // 实现 : 类的共共成员
 public:
     virtual ~CMainFrame();
 
@@ -28,16 +32,14 @@ protected:
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     DECLARE_MESSAGE_MAP()
 
-    int m_iWidth{ 800 };   // 客户区的宽
-    int m_iHeight{ 600 };  // 客户区的高
+    int m_iWidth{ 1200 }; 					// 客户区的大小
+    int m_iHeight{ 900 };
 
     enum ETimerId { ETimerIdGameLoop = 1 }; // 定时器 ID
 
-    CGame m_game; 							// 游戏对象
+    CGame m_game; 							// 游戏对象 : 注意,此处使用了CGame类
 public:
-    afx_msg void OnTimer(UINT_PTR nIDEvent);
-    afx_msg void OnMouseMove(UINT nFlags, CPoint point);
-    afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-
-
-}; 
+    afx_msg void OnTimer(UINT_PTR nIDEvent);	// 定时器消息处理函数
+    afx_msg void OnMouseMove(UINT nFlags, CPoint point); // 鼠标移动消息处理函数
+    afx_msg void OnLButtonUp(UINT nFlags, CPoint point); // 鼠标左键抬起函数
+};

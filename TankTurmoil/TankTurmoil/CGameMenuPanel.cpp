@@ -74,8 +74,7 @@ void CGameMenuPanel::OnLButtonUp(UINT nFlags, CPoint point)
         auto img = get<0>(menuItem.vImgInfoPtr[menuItem.index]);	// 获取图片指针
         auto rect = get<1>(menuItem.vImgInfoPtr[menuItem.index]);	// 获取图片大小
         if (rect.Contains(pt)) {									// 判断是否点中图片
-            // 人机对战：暂时不设置
-            // m_pParent->SetStep(CGame::EGameTypeOne2BotMenu);
+            m_pParent->SetStep(CGame::EGameTypeOne2BotMenu);
             return;
         }
     }
@@ -84,8 +83,7 @@ void CGameMenuPanel::OnLButtonUp(UINT nFlags, CPoint point)
         auto img = get<0>(menuItem.vImgInfoPtr[menuItem.index]);	// 获取图片指针
         auto rect = get<1>(menuItem.vImgInfoPtr[menuItem.index]);	// 获取图片大小
         if (rect.Contains(pt)) {									// 判断是否点中图片
-            // 双人对战：暂时不设置
-            //m_pParent->SetStep(CGame::EGameTypeOne2OneMenu);
+            m_pParent->SetStep(CGame::EGameTypeOne2OneMenu);
             return;
         }
     }
