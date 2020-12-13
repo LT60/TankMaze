@@ -28,8 +28,8 @@ protected:
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     DECLARE_MESSAGE_MAP()
 
-    int m_iWidth{ 1200 };   // 客户区的宽
-    int m_iHeight{ 900 };  // 客户区的高
+    int m_iWidth{ 800 };   // 客户区的宽
+    int m_iHeight{ 600 };  // 客户区的高
 
     enum ETimerId { ETimerIdGameLoop = 1 }; // 定时器 ID
 

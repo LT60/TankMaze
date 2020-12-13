@@ -104,13 +104,13 @@ private:
     std::vector<std::vector<CGameMapElement>> m_arr;
 
     // 整个地图的范围
-    Gdiplus::Rect m_rectMap{ 0, 0, 1200, 900 };
+    Gdiplus::Rect m_rectMap{ 0, 0, 800, 600 };
 
     // 地图中墙的宽度
-    int m_wallWidth{ 10 };
+    int m_wallWidth{ 7 };
 
     // 地图中中间空位的宽度
-    int m_spaceLen{ 63 };
+    int m_spaceLen{ 42 };
 private:
     // 路径搜索
     CGamePathFinder *m_finder{ nullptr };

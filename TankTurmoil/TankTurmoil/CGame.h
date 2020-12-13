@@ -50,7 +50,7 @@ public:
 
     std::list<CBullet> m_lstBullets;                        // 存在于地图场景中的 子弹对象数组
 
-    CGameMap m_map{ 10, 10, 1600, 1000 };             //地图对象
+    CGameMap m_map{ 10, 10, 780, 580 };             //地图对象
 
     bool CGame::GameInitOne2Bot(); //游戏初始化，人机大战
 
