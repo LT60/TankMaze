@@ -4,6 +4,7 @@
 
 CGame::CGame()
 {
+    GameInitOne2Bot();//初始化人机大战
 }
 
 CGame::~CGame()
@@ -99,6 +100,30 @@ void CGame::DrawFps(Graphics& gh)
     }
 }
 
+// 游戏初始化 : 单人对电脑
+bool CGame::GameInitOne2Bot()
+{
+    {
+        m_map.LoadMap();// 载入地图
+        // 玩家一
+        {
+            m_player01 = CPlayer(0, 0, _T("tank_player1.png"));
+            PointF ptCenter;
+            if (!m_map.FindRandomPosition(ptCenter)) {
+                AfxMessageBox(_T("调整Player01位置失败"));
+            }
+            else {
+                // 设置玩家一的中心点，让玩家一处于地图格子的正中间位置
+                m_player01.SetCenterPoint(ptCenter);
+            }
+        }
+
+        // 子弹
+        m_lstBullets.clear();
+    }
+    return true;
+}
+
 void CGame::GameRunLogic()
 {
 #define KEYDOWN(vk) (GetAsyncKeyState(vk) & 0x8000)
@@ -112,14 +137,28 @@ void CGame::GameRunLogic()
         {
             m_player01.RotateRight();			// 玩家一向右转
         }
-        if (KEYDOWN(VK_UP))            			// 上方向盘按下
-        {
-            m_player01.Forward();     			// 玩家一向前走
-        }
-        if (KEYDOWN(VK_DOWN))          			// 下方向盘按下
-        {
+        if (KEYDOWN(VK_UP)) {
+            // 坦克撞墙检测试
             {
-                m_player01.Backward(); 		// 玩家一向后退
+                if (m_map.IsHitTheWall(m_player01, true)) {
+                    m_player01.ChangeDirection(true);     // 撞墙了，改变方向
+                }
+                else {
+                    m_player01.Forward();                  // 没有撞墙，继续前进
+                }
+            }
+        }
+        if (KEYDOWN(VK_DOWN)) {
+            {
+                // 坦克撞墙检测试
+                {
+                    if (m_map.IsHitTheWall(m_player01, false)) {
+                        m_player01.ChangeDirection(true);   // 撞墙了，改变方向
+                    }
+                    else {
+                        m_player01.Backward();               // 没有撞墐，继续后退
+                    }
+                }
             }
         }
         if (KEYDOWN('M'))                		// 按下M键

@@ -13,9 +13,9 @@
 
 // CMainFrame
 
-IMPLEMENT_DYNAMIC(CMainFrame, CFrameWnd)    // VS2015自动生成代码
+IMPLEMENT_DYNAMIC(CMainFrame, CFrameWnd)    // VS2019自动生成代码
 
-BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)    // VS2015自动生成代码
+BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)    // VS2019自动生成代码
     ON_WM_CREATE()
     ON_WM_TIMER()
     ON_WM_MOUSEMOVE()
@@ -43,7 +43,9 @@ CMainFrame::CMainFrame()
         GetWindowRect(&rtDlg);
         int iXpos = rtDesk.Width() / 2 - rtDlg.Width() / 2;
         int iYpos = rtDesk.Height() / 2 - rtDlg.Height() / 2;
-        
+        //(将窗口变大后就没用了)
+        iXpos = 0;
+        iYpos = 0;
         RECT rcFrame = { iXpos, iYpos,      // 计算边框的大小，并设置
                          m_iWidth + m_iWidth - rcCli.right+iXpos,
                          m_iHeight + m_iHeight - rcCli.bottom+iYpos
