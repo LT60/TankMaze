@@ -183,22 +183,39 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bot.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="CGame.h" />
     <ClInclude Include="CGameEntry.h" />
     <ClInclude Include="CGameMenuBackground.h" />
     <ClInclude Include="CGameMenuPanel.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GameHit.h" />
+    <ClInclude Include="GameMap.h" />
+    <ClInclude Include="GamePathFinder.h" />
+    <ClInclude Include="GameTimer.h" />
+    <ClInclude Include="KeyMenuPlayer01.h" />
+    <ClInclude Include="KeyMenuPlayer02.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="TankEntry.h" />
     <ClInclude Include="TankTurmoil.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bot.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CGame.cpp" />
     <ClCompile Include="CGameEntry.cpp" />
     <ClCompile Include="CGameMenuBackground.cpp" />
     <ClCompile Include="CGameMenuPanel.cpp" />
+    <ClCompile Include="GameHit.cpp" />
+    <ClCompile Include="GameMap.cpp" />
+    <ClCompile Include="KeyMenuPlayer01.cpp" />
+    <ClCompile Include="KeyMenuPlayer02.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -206,7 +223,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="TankEntry.cpp" />
     <ClCompile Include="TankTurmoil.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TankTurmoil.rc" />

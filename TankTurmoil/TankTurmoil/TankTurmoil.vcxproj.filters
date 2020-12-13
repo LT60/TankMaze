@@ -45,6 +45,39 @@
     <ClInclude Include="CGameEntry.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Bot.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMenuPlayer01.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMenuPlayer02.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TankEntry.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHit.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTimer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePathFinder.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TankTurmoil.cpp">
@@ -66,6 +99,33 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CGameEntry.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Bot.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyMenuPlayer01.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyMenuPlayer02.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TankEntry.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GameHit.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
