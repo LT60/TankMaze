@@ -24,7 +24,7 @@ public:
 
     virtual void Draw(Graphics& gh) const;        // 画自己
 
-    RectF m_rect{ 0, 0, 800, 600 };                  // 自己的范围
+    RectF m_rect{ 0, 0, 1200, 800 };                  // 自己的范围
 
     void OnMouseMove(UINT nFlags, CPoint point);  // 处理 鼠标移动事件
 

@@ -110,7 +110,7 @@ private:
     int m_wallWidth{ 10 };
 
     // 地图中中间空位的宽度
-    int m_spaceLen{ 63 };
+    int m_spaceLen{ 74 };
 private:
     // 路径搜索
     CGamePathFinder *m_finder{ nullptr };
