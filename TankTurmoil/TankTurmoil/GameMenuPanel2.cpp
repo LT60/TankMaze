@@ -7,7 +7,7 @@ CGameMenuPanel2::CGameMenuPanel2()
 {
     m_img = Image::FromFile(_T("menu_backup.png"));
     if(m_img) {
-        RectF rc = {1200 - 100, 800 - 40
+        RectF rc = {800 - 100, 600 - 40
                     , static_cast<float>(m_img->GetWidth())
                     , static_cast<float>(m_img->GetHeight())
                    };

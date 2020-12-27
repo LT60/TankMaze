@@ -13,7 +13,7 @@ CGameMenuPanel::CGameMenuPanel()
         TCHAR path[MAX_PATH];
         _stprintf_s(path, _T("menu_1player_%d.png"), i);               // 格式化文件名
         auto imgPtr = Image::FromFile(path);                            // 载入图片
-        RectF rc(200, 300, static_cast<float>(imgPtr->GetWidth()),
+        RectF rc(100, 300, static_cast<float>(imgPtr->GetWidth()),
             static_cast<float>(imgPtr->GetHeight()));
         m_menuItems[0].vImgInfoPtr.push_back(make_tuple(imgPtr, rc)); // 图片存在数组中
     }
@@ -24,7 +24,7 @@ CGameMenuPanel::CGameMenuPanel()
         TCHAR path[MAX_PATH];
         _stprintf_s(path, _T("menu_2plyaer_%d.png"), i);              // 格式化文件名
         auto imgPtr = Image::FromFile(path);                           // 载入图片
-        RectF rc(600, 300, static_cast<float>(imgPtr->GetWidth())
+        RectF rc(500, 300, static_cast<float>(imgPtr->GetWidth())
             , static_cast<float>(imgPtr->GetHeight()));
         m_menuItems[1].vImgInfoPtr.push_back(make_tuple(imgPtr, rc)); // 图片存在数组中
     }
